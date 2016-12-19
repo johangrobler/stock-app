@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Clinic Stock</ion-title>
+    <ion-buttons end> 
+        <button color="royal"  ion-button  icon-only (click)="loadNearistClinic()"> 
+            <ion-icon name="refresh"></ion-icon>
+          </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="clinic">
+      <div class="pina">
+        <ion-icon name="pin"></ion-icon>
+        <p >{{clinic.distance}} km</p>
+      </div>
+      <div class="clinicname">
+        
+        <h1>{{clinic.name}}</h1>
+        <p>{{clinic.address}}</p>
+      </div>
+      <div style="clear:both"></div>
+  </div>
+  <div padding  *ngIf="!clinic.name" >
+  <ion-spinner style=" float:left;"></ion-spinner> 
+  <p class="loading">Geolocation your position</p>
+  </div>
+  <div *ngIf="stock">
+
+    <div padding>
+      <h3>{{stock.product_name}}</h3>
+    Enter quantity for {{stock.product_name}}
+    </div>
+    <ion-list>
+
+      <ion-item>
+        <ion-label>Quantity:</ion-label>
+        <ion-input type="number" [(ngModel)]="stock.quantity"></ion-input>
+      </ion-item>
+ 
+
+    </ion-list>
+
+    <div padding>
+      <button block large ion-button (click)="sendQuantity(stock)" color="dark">Confirm Quantity</button>
+    </div>
+
+  </div>
+
+<ion-list *ngIf="!stock">
+
+  <ion-list-header  *ngIf="clinic.name">
+    Products
+  </ion-list-header>
+  <ion-item-sliding  *ngFor="let stock of stocks">
+      <ion-item > 
+      
+        <h2>{{ stock.product_name }}</h2>
+        <p>{{ stock.barcode}}   </p> 
+        <p item-right> {{ stock.quantity}}   </p> 
+      </ion-item>  
+ 
+    <ion-item-options side="right">
+      <button ion-button color="danger" (click)="outOfStock(stock)"> 
+        Out of stock
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+<p padding *ngIf="!stock">Swipe product if it is out of stock.</p>
+</ion-content>
+<ion-footer *ngIf="!stock">
+
+
+   <ion-toolbar color="danger" (click)="scan()">
+    <ion-title>SCAN PRODUCT </ion-title>
+  </ion-toolbar>
+
+</ion-footer>

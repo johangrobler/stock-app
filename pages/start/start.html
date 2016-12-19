@@ -1,0 +1,36 @@
+<!--
+  Generated template for the Start page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+ 
+
+<ion-content  >
+<ion-list>
+      <div padding class="title">
+        <h1 *ngIf="!verify_pin">Enter mobile number</h1>
+        <h1 *ngIf="verify_pin">Enter 4 digit pin</h1>
+      </div>
+      <ion-item *ngIf="!verify_pin">
+        <ion-label>Mobile:</ion-label> 
+        <ion-input type="tel" [(ngModel)]="mobile"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="verify_pin"> 
+        <ion-label>Pin:</ion-label>
+        <ion-input type="number" [(ngModel)]="pin"></ion-input>
+      </ion-item>
+ 
+
+    </ion-list>
+
+    <div padding>
+      <button block large ion-button (click)="login()" color="dark" *ngIf="verify_pin">Verify Pin</button>
+
+      <button block large ion-button (click)="checkNumber()" color="dark" *ngIf="!verify_pin">Check mobile</button>
+   
+      <br>
+      <div (click)="resend()"  *ngIf="verify_pin">Check mobile number and resend pin</div>
+      <p>Your mobile number needs to exisit on the system. A four digit one time pin code will be smsed to this mobile number.</p>
+    </div>
+</ion-content>

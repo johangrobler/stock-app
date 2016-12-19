@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{clinic.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<div id="map">
+   <img src="https://maps.googleapis.com/maps/api/staticmap?center={{clinic.latitude}},{{clinic.longitude}}&zoom=17&size=800x400&maptype=roadmap&markers=icon:https://mezzanine-stock.herokuapp.com/pin.png%7Clabel:Drop%7C{{clinic.latitude}},{{clinic.longitude}}&key=AIzaSyC0b2vgQBPLWybCf0Qio0suZqXkkeVX1Ow" 
+   style="width:100%;" />  
+</div>
+<div padding>
+  <p class="distance">{{clinic.distance}} km</p>
+  <h3>{{clinic.name}}</h3>
+  <p>{{clinic.address}}</p>
+   <button ion-button secondary block (click)="takeMeThere()" >Take me there</button>
+   
+</div>
+
+
+<ion-list>
+  <ion-item *ngFor="let stock of clinic.stock" > 
+   
+    <h2>{{ stock.product}}</h2>
+    <p> {{ stock.barcode}}   </p> 
+    <p item-right> {{ stock.quantity}}   </p> 
+  </ion-item>
+</ion-list>
+
+
+</ion-content>

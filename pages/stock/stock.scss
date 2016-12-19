@@ -1,0 +1,35 @@
+page-stock {
+    .clinic{
+        background-color:#eee;
+            ion-icon { 
+             color:red;
+             font-size:40px;
+             padding:20px 15px 0px 10px;
+             height:80px;
+        }
+        .clinicname {   
+            width:70vw;
+            margin:3px 0px 0px 0px;padding:0; 
+             float:left;
+             background-color:#eee;
+             p{
+
+                 margin-top:-5px;
+             }
+        }
+        .pina{
+             text-align: center;
+             width:26vw;
+             float:left; 
+             p{
+                 color:#888;
+                 font-size:12px;
+                 margin-top:-14px;
+             }
+        }
+    }
+    .loading{
+        margin:5px 15px 20px 15px;
+        float:left;
+    }
+}
